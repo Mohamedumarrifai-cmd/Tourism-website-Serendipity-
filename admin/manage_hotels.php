@@ -62,7 +62,7 @@ $result = $conn->query('SELECT * FROM hotels ORDER BY id DESC');
 </head>
 <body>
     <div class="admin-wrap">
-        <div class="panel"><h1>Manage Hotel</h1><a href="dashboard.php">← Back to dashboard</a></div>
+        <div class="panel"><h1>Manage Hotels</h1><a href="dashboard.php">← Back to dashboard</a></div>
         <div class="panel">
             <h3><?php echo $edit_hotel ? 'Edit Hotel' : 'Add New Hotel'; ?></h3>
             <form method="post" action="manage_hotels.php">
