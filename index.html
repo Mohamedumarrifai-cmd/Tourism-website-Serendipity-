@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=index.php" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting to Sri Lanka Travel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #113826, #1a5a3a);
+            color: white;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        a { color: #ffd166; }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome to Serendipity Sri Lanka</h1>
+        <p>If you are not redirected automatically, <a href="index.php">click here</a>.</p>
+    </div>
+</body>
+</html>
+
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        .search-section {
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-bar {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 28px;
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar .search-input {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--light);
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+        .search-bar .search-input:focus-within {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+        }
+        .search-bar .search-input i {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        .search-bar .search-input input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.95rem;
+            width: 100%;
+            font-family: var(--font-body);
+        }
+
+        .search-bar .search-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-bar .search-filters select {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--gray-light);
+            background: var(--light);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 140px;
+        }
+        .search-bar .search-filters select:focus {
+            border-color: var(--secondary);
+        }
+
+        .search-bar .btn-search {
+            padding: 12px 36px;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+        .search-bar .btn-search:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.35);
+        }
+
+        /* ===== DESTINATIONS ===== */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .destination-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .destination-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .destination-card .card-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .destination-card .card-image .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            color: var(--white);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .destination-card .card-image .card-badge i {
+            margin-right: 4px;
+            color: var(--secondary);
+        }
+
+        .destination-card .card-body {
+            padding: 20px 24px 24px;
+        }
+        .destination-card .card-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .destination-card .card-body .location {
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .destination-card .card-body .location i {
+            color: var(--secondary);
+            font-size: 0.8rem;
+        }
+        .destination-card .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .destination-card .card-body .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .destination-card .card-body .card-tags span {
+            background: var(--light);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+        .destination-card .card-body .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-light);
+        }
+        .destination-card .card-body .card-footer .rating {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .destination-card .card-body .card-footer .rating i {
+            color: #f59e0b;
+            margin-right: 4px;
+        }
+        .destination-card .card-body .card-footer .explore-link {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .destination-card .card-body .card-footer .explore-link:hover {
+            color: var(--secondary);
+            gap: 10px;
+        }
+
+        /* ===== CATEGORIES ===== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+        }
+
+        .category-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .category-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+        .category-item .icon {
+            font-size: 2.4rem;
+            color: var(--secondary);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .category-item h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+        .category-item span {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ===== EXPERIENCES ===== */
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .experience-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .experience-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .experience-card .exp-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        .experience-card .exp-body {
+            padding: 20px 24px 24px;
+        }
+        .experience-card .exp-body h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .experience-card .exp-body p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .experience-card .exp-body .exp-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .experience-card .exp-body .exp-meta i {
+            color: var(--secondary);
+            margin-right: 4px;
+        }
+
+        /* ===== HOTELS ===== */
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .hotel-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .hotel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .hotel-card .hotel-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        .hotel-card .hotel-body {
+            padding: 20px 24px 24px;
+        }
+        .hotel-card .hotel-body h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .hotel-card .hotel-body .hotel-location {
+            font-size: 0.85rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+        .hotel-card .hotel-body .hotel-location i {
+            color: var(--secondary);
+        }
+        .hotel-card .hotel-body .hotel-rating {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .hotel-card .hotel-body .hotel-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 8px;
+            font-size: 1.1rem;
+        }
+        .hotel-card .hotel-body .hotel-price span {
+            font-weight: 400;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* ===== TRAVEL GUIDE ===== */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+        }
+
+        .guide-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        .guide-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .guide-item .guide-icon {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        .guide-item h4 {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .guide-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== TRIP PLANNER ===== */
+        .planner-section {
+            background: var(--primary-dark);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .planner-section .planner-content h2 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+        .planner-section .planner-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .planner-section .planner-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .planner-section .planner-form .form-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .planner-section .planner-form input,
+        .planner-section .planner-form select {
+            flex: 1;
+            min-width: 120px;
+            padding: 14px 18px;
+            border-radius: 50px;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .planner-section .planner-form .btn-plan {
+            padding: 14px 36px;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            align-self: flex-start;
+        }
+        .planner-section .planner-form .btn-plan:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+        .contact-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+        .contact-info p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .contact-info .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .contact-info .contact-detail i {
+            width: 44px;
+            height: 44px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .contact-info .contact-detail span {
+            font-weight: 500;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 36px 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--gray-light);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+        .contact-form .btn-submit:hover {
+            background: var(--secondary-light);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+            margin-top: 40px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-brand .logo {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            display: inline-flex;
+        }
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+        .footer h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+        .footer ul li a {
+            transition: var(--transition);
+        }
+        .footer ul li a:hover {
+            color: var(--secondary);
+        }
+        .footer-socials {
+            display: flex;
+            gap: 14px;
+            margin-top: 12px;
+        }
+        .footer-socials a {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+        .footer-socials a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer-bottom span {
+            color: var(--secondary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .planner-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 32px 24px;
+            }
+            .planner-section .planner-form .btn-plan {
+                align-self: center;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 80px 32px 32px;
+                transition: var(--transition);
+                gap: 20px;
+                align-items: flex-start;
+                box-shadow: -8px 0 40px rgba(0, 0, 0, 0.3);
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .hero h1 span::after {
+                display: none;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                padding: 16px;
+            }
+            .search-bar .search-input {
+                width: 100%;
+            }
+            .search-bar .search-filters {
+                width: 100%;
+            }
+            .search-bar .search-filters select {
+                flex: 1;
+                min-width: 100px;
+            }
+            .search-bar .btn-search {
+                width: 100%;
+            }
+
+            .destinations-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .experiences-grid,
+            .hotels-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .guide-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .experiences-grid,
+            .hotels-grid {
+                grid-template-columns: 1fr;
+            }
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-padding {
+                padding: 48px 0;
+            }
+            .planner-section {
+                padding: 24px 16px;
+            }
+            .planner-section .planner-form .form-row {
+                flex-direction: column;
+            }
+            .hero-stats .stat-number {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-32 {
+            margin-top: 32px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== NO RESULTS ===== */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+        .no-results i {
+            font-size: 3rem;
+            color: var(--gray-light);
+            margin-bottom: 16px;
+        }
+        .no-results h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="#" class="logo" aria-label="Explore Sri Lanka Home">
+                <i class="fas fa-umbrella-beach"></i> Explore<span>LK</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="#home" role="menuitem" class="active">Home</a></li>
+                <li role="none"><a href="#destinations" role="menuitem">Destinations</a></li>
+                <li role="none"><a href="#experiences" role="menuitem">Experiences</a></li>
+                <li role="none"><a href="#hotels" role="menuitem">Hotels</a></li>
+                <li role="none"><a href="#guide" role="menuitem">Travel Guide</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+                <li role="none"><a href="#planner" role="menuitem" class="nav-cta">Plan Your Trip</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-leaf"></i> Island of Serendipity
+            </div>
+            <h1>Discover the <span>Magic</span> of Sri Lanka</h1>
+            <p>
+                From golden beaches and misty mountains to ancient temples and
+                thrilling wildlife — your adventure begins here.
+            </p>
+            <div class="hero-buttons">
+                <a href="#destinations" class="btn btn-primary">
+                    <i class="fas fa-compass"></i> Explore Now
+                </a>
+                <a href="#planner" class="btn btn-outline">
+                    <i class="fas fa-calendar-check"></i> Plan Your Trip
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">UNESCO Sites</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1,600+</div>
+                    <div class="stat-label">Km of Coastline</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">National Parks</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Years of History</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEARCH BAR ===== -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-bar" id="searchBar">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search destinations, activities..." aria-label="Search destinations" />
+                </div>
+                <div class="search-filters">
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="all">All Categories</option>
+                        <option value="beach">Beaches</option>
+                        <option value="mountain">Mountains</option>
+                        <option value="wildlife">Wildlife</option>
+                        <option value="culture">Culture</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="historical">Historical</option>
+                    </select>
+                    <button class="btn-search" id="searchBtn">
+                        <i class="fas fa-arrow-right"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DESTINATIONS ===== -->
+    <section class="section-padding" id="destinations">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="hero-badge" style="background: rgba(26,90,58,0.08); color: var(--primary); border-color: rgba(26,90,58,0.12);">
+                    <i class="fas fa-map-pin"></i> Must-Visit
+                </span>
+                <h2 class="section-title">Popular Destinations</h2>
+                <p class="section-subtitle">
+                    Explore the most breathtaking places across Sri Lanka — from
+                    coastal gems to hill country retreats.
+                </p>
+            </div>
+
+            <div class="destinations-grid" id="destinationsGrid">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIES ===== -->
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="hero-badge" style="background: rgba(201,168,76,0.08); color: var(--secondary); border-color: rgba(201,168,76,0.12);">
+                    <i class="fas fa-tag"></i> Explore By
+                </span>
+                <h2 class="section-title">Destination Categories</h2>
+                <p class="section-subtitle">
+                    Find your perfect getaway by interest — whether it's sun,
+                    culture, or adventure.
+                </p>
+            </div>
+
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCES ===== -->
+    <section class="section-padding" id="experiences" style="background: var(--white);">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="hero-badge" style="background: rgba(232,93,58,0.08); color: var(--accent); border-color: rgba(232,93,58,0.12);">
+                    <i class="fas fa-star"></i> Unforgettable
+                </span>
+                <h2 class="section-title">Travel Experiences</h2>
+                <p class="section-subtitle">
+                    Immerse yourself in authentic Sri Lankan adventures —
+                    from safaris to tea trails.
+                </p>
+            </div>
+
+            <div class="experiences-grid" id="experiencesGrid">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOTELS ===== -->
+    <section class="section-padding" id="hotels">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="hero-badge" style="background: rgba(26,90,58,0.08); color: var(--primary); border-color: rgba(26,90,58,0.12);">
+                    <i class="fas fa-hotel"></i> Stay
+                </span>
+                <h2 class="section-title">Recommended Hotels</h2>
+                <p class="section-subtitle">
+                    Handpicked accommodations for every style — luxury resorts,
+                    boutique villas, and eco-lodges.
+                </p>
+            </div>
+
+            <div class="hotels-grid" id="hotelsGrid">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRAVEL GUIDE ===== -->
+    <section class="section-padding" id="guide" style="background: var(--white);">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="hero-badge" style="background: rgba(201,168,76,0.08); color: var(--secondary); border-color: rgba(201,168,76,0.12);">
+                    <i class="fas fa-book-open"></i> Insider Tips
+                </span>
+                <h2 class="section-title">Travel Guide</h2>
+                <p class="section-subtitle">
+                    Everything you need to know before you go — from local
+                    customs to hidden gems.
+                </p>
+            </div>
+
+            <div class="guide-grid" id="guideGrid">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRIP PLANNER ===== -->
+    <section class="section-padding" id="planner" style="background: var(--light);">
+        <div class="container">
+            <div class="planner-section fade-up">
+                <div class="planner-content">
+                    <h2><i class="fas fa-map-signs" style="color: var(--secondary); margin-right: 10px;"></i> Plan Your Dream Trip</h2>
+                    <p>
+                        Tell us what you love, and we'll craft a personalized
+                        itinerary filled with the best of Sri Lanka — from
+                        sunrise hikes to sunset safaris.
+                    </p>
+                    <div style="display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                        <span><i class="fas fa-check-circle" style="color: var(--secondary);"></i> Custom itineraries</span>
+                        <span><i class="fas fa-check-circle" style="color: var(--secondary);"></i> Local experts</span>
+                        <span><i class="fas fa-check-circle" style="color: var(--secondary);"></i> 24/7 support</span>
+                    </div>
+                </div>
+                <div class="planner-form">
+                    <div class="form-row">
+                        <input type="text" placeholder="Your name" id="planName" />
+                        <input type="email" placeholder="Email address" id="planEmail" />
+                    </div>
+                    <div class="form-row">
+                        <select id="planDuration">
+                            <option value="">Trip duration</option>
+                            <option value="3">3–5 days</option>
+                            <option value="7">1 week</option>
+                            <option value="10">10 days</option>
+                            <option value="14">2 weeks</option>
+                            <option value="21">3 weeks+</option>
+                        </select>
+                        <select id="planInterest">
+                            <option value="">I'm interested in…</option>
+                            <option value="beach">Beaches &amp; Sun</option>
+                            <option value="culture">Culture &amp; History</option>
+                            <option value="wildlife">Wildlife &amp; Nature</option>
+                            <option value="adventure">Adventure &amp; Trekking</option>
+                            <option value="all">A bit of everything</option>
+                        </select>
+                    </div>
+                    <button class="btn-plan" id="planBtn">
+                        <i class="fas fa-paper-plane"></i> Get My Itinerary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="hero-badge" style="background: rgba(232,93,58,0.08); color: var(--accent); border-color: rgba(232,93,58,0.12);">
+                    <i class="fas fa-envelope"></i> Get in Touch
+                </span>
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">
+                    Have questions? We'd love to help you plan the perfect
+                    Sri Lankan escape.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info fade-up">
+                    <h3>Let's start your journey</h3>
+                    <p>
+                        Our travel experts are here to assist you with
+                        personalized recommendations, booking support, and
+                        insider tips for an unforgettable trip.
+                    </p>
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Colombo, Sri Lanka</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+94 11 234 5678</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>hello@explorelk.com</span>
+                    </div>
+                    <div style="margin-top: 24px; display: flex; gap: 12px;">
+                        <a href="#" aria-label="Facebook" style="width:44px;height:44px;background:var(--light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:var(--transition);"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" style="width:44px;height:44px;background:var(--light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:var(--transition);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube" style="width:44px;height:44px;background:var(--light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:var(--transition);"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Twitter" style="width:44px;height:44px;background:var(--light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:var(--transition);"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form fade-up">
+                    <form id="contactForm" novalidate>
+                        <input type="text" placeholder="Your name" required id="contactName" />
+                        <input type="email" placeholder="Email address" required id="contactEmail" />
+                        <input type="text" placeholder="Subject" id="contactSubject" />
+                        <textarea placeholder="Tell us about your dream trip…" id="contactMessage" required></textarea>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i class="fas fa-umbrella-beach"></i> Explore<span>LK</span>
+                    </a>
+                    <p>
+                        Discover the island of serendipity — where every sunset
+                        tells a story and every adventure becomes a memory.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Destinations</h4>
+                    <ul>
+                        <li><a href="#destinations">Beaches</a></li>
+                        <li><a href="#destinations">Mountains</a></li>
+                        <li><a href="#destinations">Wildlife</a></li>
+                        <li><a href="#destinations">Culture</a></li>
+                        <li><a href="#destinations">Adventure</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 <span>ExploreLK</span> — Crafted with <i class="fas fa-heart" style="color: var(--accent);"></i> for travelers.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // =============================================
+            // DATA
+            // =============================================
+            const destinations = [{
+                id: 1,
+                name: 'Sigiriya Rock Fortress',
+                location: 'Central Province',
+                description: 'Ancient rock fortress and palace ruins with stunning views, frescoes, and lion\'s paw entrance.',
+                image: 'https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=600&q=80',
+                category: 'historical',
+                tags: ['UNESCO', 'Archaeology', 'Views'],
+                rating: 4.9,
+                activities: ['Climb', 'Photography', 'History Tour']
+            }, {
+                id: 2,
+                name: 'Ella Rock & Nine Arches Bridge',
+                location: 'Ella, Uva Province',
+                description: 'Lush green hills, scenic railway bridge, and epic hiking trails through tea plantations.',
+                image: 'https://images.unsplash.com/photo-1589392946549-0d2cb4c2d2e4?w=600&q=80',
+                category: 'mountain',
+                tags: ['Hiking', 'Tea Country', 'Scenic'],
+                rating: 4.8,
+                activities: ['Hiking', 'Train Ride', 'Photography']
+            }, {
+                id: 3,
+                name: 'Mirissa Beach',
+                location: 'Southern Province',
+                description: 'Golden sands, swaying palms, and crystal-clear waters — perfect for swimming and whale watching.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+                category: 'beach',
+                tags: ['Swimming', 'Whale Watching', 'Sunset'],
+                rating: 4.7,
+                activities: ['Swim', 'Whale Safari', 'Sunset Cruise']
+            }, {
+                id: 4,
+                name: 'Yala National Park',
+                location: 'Southern Province',
+                description: 'Home to the highest density of leopards in the world, plus elephants, crocodiles, and birdlife.',
+                image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80',
+                category: 'wildlife',
+                tags: ['Safari', 'Leopards', 'Elephants'],
+                rating: 4.9,
+                activities: ['Jeep Safari', 'Bird Watching', 'Photography']
+            }, {
+                id: 5,
+                name: 'Kandy & Temple of the Tooth',
+                location: 'Central Province',
+                description: 'Sacred Buddhist temple housing the relic of the tooth of Buddha, surrounded by misty hills.',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80',
+                category: 'culture',
+                tags: ['Temple', 'UNESCO', 'Cultural'],
+                rating: 4.8,
+                activities: ['Temple Visit', 'Cultural Show', 'Lake Walk']
+            }, {
+                id: 6,
+                name: 'Adam\'s Peak (Sri Pada)',
+                location: 'Central Province',
+                description: 'Sacred mountain with a footprint-shaped rock at the summit, famous for the sunrise pilgrimage.',
+                image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
+                category: 'mountain',
+                tags: ['Pilgrimage', 'Sunrise', 'Hiking'],
+                rating: 4.7,
+                activities: ['Night Hike', 'Sunrise View', 'Pilgrimage']
+            }, {
+                id: 7,
+                name: 'Galle Fort',
+                location: 'Southern Province',
+                description: 'A 17th-century Dutch colonial fort with charming streets, boutique shops, and ocean views.',
+                image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80',
+                category: 'historical',
+                tags: ['Colonial', 'UNESCO', 'Shopping'],
+                rating: 4.8,
+                activities: ['Walking Tour', 'Photography', 'Café Hopping']
+            }, {
+                id: 8,
+                name: 'Nuwara Eliya',
+                location: 'Central Province',
+                description: '"Little England" — a cool hill station with tea estates, waterfalls, and colonial charm.',
+                image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80',
+                category: 'mountain',
+                tags: ['Tea', 'Colonial', 'Cool Climate'],
+                rating: 4.6,
+                activities: ['Tea Tour', 'Gardens', 'Hiking']
+            }, {
+                id: 9,
+                name: 'Bentota Beach',
+                location: 'Southern Province',
+                description: 'A stunning stretch of golden sand with water sports, river safaris, and luxury resorts.',
+                image: 'https://images.unsplash.com/photo-1525997457725-9c1f08d6bd9c?w=600&q=80',
+                category: 'beach',
+                tags: ['Water Sports', 'Resorts', 'River Safari'],
+                rating: 4.5,
+                activities: ['Water Sports', 'River Cruise', 'Relax']
+            }, {
+                id: 10,
+                name: 'Kumana National Park',
+                location: 'Eastern Province',
+                description: 'A birdwatcher\'s paradise with wetlands, lagoons, and a rich variety of migratory birds.',
+                image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80',
+                category: 'wildlife',
+                tags: ['Bird Watching', 'Wetlands', 'Safari'],
+                rating: 4.5,
+                activities: ['Bird Watching', 'Boat Safari', 'Photography']
+            }, {
+                id: 11,
+                name: 'Anuradhapura',
+                location: 'North Central Province',
+                description: 'Ancient capital with giant stupas, monastic ruins, and the sacred Sri Maha Bodhi tree.',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80',
+                category: 'historical',
+                tags: ['UNESCO', 'Ancient City', 'Buddhist'],
+                rating: 4.7,
+                activities: ['Cycling Tour', 'Temple Visit', 'History Walk']
+            }, {
+                id: 12,
+                name: 'Arugam Bay',
+                location: 'Eastern Province',
+                description: 'A world-class surfing destination with a laid-back vibe, golden beaches, and clear waves.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+                category: 'adventure',
+                tags: ['Surfing', 'Beach', 'Nightlife'],
+                rating: 4.6,
+                activities: ['Surfing', 'Beach Relax', 'Party']
+            }];
+
+            const categories = [
+                { icon: 'fas fa-umbrella-beach', name: 'Beaches', slug: 'beach', count: 2 },
+                { icon: 'fas fa-mountain', name: 'Mountains', slug: 'mountain', count: 3 },
+                { icon: 'fas fa-paw', name: 'Wildlife', slug: 'wildlife', count: 2 },
+                { icon: 'fas fa-landmark', name: 'Culture', slug: 'culture', count: 1 },
+                { icon: 'fas fa-hiking', name: 'Adventure', slug: 'adventure', count: 1 },
+                { icon: 'fas fa-monument', name: 'Historical', slug: 'historical', count: 3 },
+            ];
+
+            const experiences = [{
+                title: 'Whale Watching in Mirissa',
+                description: 'Witness majestic blue whales and dolphins in their natural habitat.',
+                image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80',
+                duration: '3–4 hours',
+                group: 'Small group'
+            }, {
+                title: 'Tea Trail Trekking',
+                description: 'Hike through misty tea plantations and visit a working tea factory.',
+                image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80',
+                duration: 'Half day',
+                group: 'Private'
+            }, {
+                title: 'Cultural Temple Tour',
+                description: 'Explore Kandy\'s sacred temple and witness a traditional Kandyan dance.',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80',
+                duration: 'Full day',
+                group: 'Group'
+            }, {
+                title: 'Yala Safari Adventure',
+                description: 'Spot leopards, elephants, and exotic birds on an open-jeep safari.',
+                image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80',
+                duration: '4–5 hours',
+                group: 'Small group'
+            }];
+
+            const hotels = [{
+                name: 'Cinnamon Wild Yala',
+                location: 'Yala National Park',
+                image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
+                rating: 4.8,
+                price: '$220',
+                night: 'per night'
+            }, {
+                name: 'Jetwing Lighthouse',
+                location: 'Galle',
+                image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80',
+                rating: 4.7,
+                price: '$185',
+                night: 'per night'
+            }, {
+                name: 'Heritance Kandalama',
+                location: 'Dambulla',
+                image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80',
+                rating: 4.9,
+                price: '$260',
+                night: 'per night'
+            }, {
+                name: 'Amanwella',
+                location: 'Tangalle',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+                rating: 4.9,
+                price: '$450',
+                night: 'per night'
+            }];
+
+            const guideItems = [{
+                icon: 'fas fa-passport',
+                title: 'Visa & Entry',
+                text: 'Most nationalities get a free 30-day tourist visa on arrival. ETA available online.'
+            }, {
+                icon: 'fas fa-money-bill-wave',
+                title: 'Currency & Costs',
+                text: 'Sri Lankan Rupee (LKR). Budget travelers can get by on $30–50/day.'
+            }, {
+                icon: 'fas fa-utensils',
+                title: 'Local Cuisine',
+                text: 'Don\'t miss rice & curry, hoppers, kottu roti, and fresh seafood.'
+            }, {
+                icon: 'fas fa-shield-alt',
+                title: 'Safety & Health',
+                text: 'Sri Lanka is safe for travelers. Stay hydrated and protect against mosquitoes.'
+            }, {
+                icon: 'fas fa-bus',
+                title: 'Getting Around',
+                text: 'Trains, buses, tuk-tuks, and private drivers make travel easy.'
+            }, {
+                icon: 'fas fa-calendar-alt',
+                title: 'Best Time to Visit',
+                text: 'December to March for the west/south coasts; April to September for the east.'
+            }];
+
+            // =============================================
+            // RENDER FUNCTIONS
+            // =============================================
+
+            function renderDestinations(filtered) {
+                const grid = document.getElementById('destinationsGrid');
+                const data = filtered || destinations;
+                if (data.length === 0) {
+                    grid.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-search"></i>
+                                <h3>No destinations found</h3>
+                                <p>Try adjusting your search or filters.</p>
+                            </div>
+                        `;
+                    return;
+                }
+                grid.innerHTML = data.map(d => `
+                        <div class="destination-card fade-up" data-category="${d.category}" data-name="${d.name.toLowerCase()}">
+                            <div class="card-image" style="background-image:url('${d.image}');">
+                                <span class="card-badge"><i class="fas fa-star"></i> ${d.rating}</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>${d.name}</h3>
+                                <div class="location"><i class="fas fa-map-marker-alt"></i> ${d.location}</div>
+                                <p>${d.description}</p>
+                                <div class="card-tags">
+                                    ${d.tags.map(t => `<span>${t}</span>`).join('')}
+                                </div>
+                                <div class="card-footer">
+                                    <span class="rating"><i class="fas fa-star"></i> ${d.rating}</span>
+                                    <a href="#planner" class="explore-link">Plan Visit <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+            }
+
+            function renderCategories() {
+                const grid = document.getElementById('categoriesGrid');
+                grid.innerHTML = categories.map(c => `
+                        <div class="category-item fade-up" data-slug="${c.slug}">
+                            <span class="icon"><i class="${c.icon}"></i></span>
+                            <h4>${c.name}</h4>
+                            <span>${c.count} places</span>
+                        </div>
+                    `).join('');
+                // Click to filter
+                document.querySelectorAll('.category-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const slug = this.dataset.slug;
+                        document.getElementById('categoryFilter').value = slug;
+                        filterDestinations();
+                        document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
+                    });
+                });
+            }
+
+            function renderExperiences() {
+                const grid = document.getElementById('experiencesGrid');
+                grid.innerHTML = experiences.map(e => `
+                        <div class="experience-card fade-up">
+                            <div class="exp-image" style="background-image:url('${e.image}');"></div>
+                            <div class="exp-body">
+                                <h4>${e.title}</h4>
+                                <p>${e.description}</p>
+                                <div class="exp-meta">
+                                    <span><i class="far fa-clock"></i> ${e.duration}</span>
+                                    <span><i class="fas fa-users"></i> ${e.group}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+            }
+
+            function renderHotels() {
+                const grid = document.getElementById('hotelsGrid');
+                grid.innerHTML = hotels.map(h => `
+                        <div class="hotel-card fade-up">
+                            <div class="hotel-image" style="background-image:url('${h.image}');"></div>
+                            <div class="hotel-body">
+                                <h4>${h.name}</h4>
+                                <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> ${h.location}</div>
+                                <div class="hotel-rating"><i class="fas fa-star"></i> ${h.rating}</div>
+                                <div class="hotel-price">${h.price} <span>${h.night}</span></div>
+                            </div>
+                        </div>
+                    `).join('');
+            }
+
+            function renderGuide() {
+                const grid = document.getElementById('guideGrid');
+                grid.innerHTML = guideItems.map(g => `
+                        <div class="guide-item fade-up">
+                            <div class="guide-icon"><i class="${g.icon}"></i></div>
+                            <h4>${g.title}</h4>
+                            <p>${g.text}</p>
+                        </div>
+                    `).join('');
+            }
+
+            // =============================================
+            // FILTER / SEARCH
+            // =============================================
+            function filterDestinations() {
+                const query = document.getElementById('searchInput').value.toLowerCase().trim();
+                const category = document.getElementById('categoryFilter').value;
+                let filtered = destinations.filter(d => {
+                    const matchName = d.name.toLowerCase().includes(query) ||
+                        d.location.toLowerCase().includes(query) ||
+                        d.description.toLowerCase().includes(query) ||
+                        d.tags.some(t => t.toLowerCase().includes(query));
+                    const matchCategory = category === 'all' || d.category === category;
+                    return matchName && matchCategory;
+                });
+                renderDestinations(filtered);
+            }
+
+            // =============================================
+            // NAVIGATION
+            // =============================================
+            const navbar = document.getElementById('navbar');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            window.addEventListener('scroll', function() {
+                navbar.classList.toggle('scrolled', window.scrollY > 40);
+            });
+
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('open');
+                const expanded = this.classList.contains('active');
+                this.setAttribute('aria-expanded', expanded);
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Active link on scroll
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(sec => {
+                    const top = sec.offsetTop - 200;
+                    if (window.scrollY >= top) {
+                        current = sec.getAttribute('id');
+                    }
+                });
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // =============================================
+            // SEARCH EVENTS
+            // =============================================
+            document.getElementById('searchBtn').addEventListener('click', filterDestinations);
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') filterDestinations();
+            });
+            document.getElementById('categoryFilter').addEventListener('change', filterDestinations);
+
+            // =============================================
+            // SCROLL ANIMATIONS (Intersection Observer)
+            // =============================================
+            const fadeEls = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+            fadeEls.forEach(el => observer.observe(el));
+
+            // =============================================
+            // TRIP PLANNER
+            // =============================================
+            document.getElementById('planBtn').addEventListener('click', function() {
+                const name = document.getElementById('planName').value.trim();
+                const email = document.getElementById('planEmail').value.trim();
+                const duration = document.getElementById('planDuration').value;
+                const interest = document.getElementById('planInterest').value;
+
+                if (!name || !email || !duration || !interest) {
+                    alert('Please fill in all fields so we can plan your perfect trip! 🌴');
+                    return;
+                }
+
+                alert(`Thank you, ${name}! ✨\nWe'll send a custom itinerary to ${email} within 24 hours.\n\nDuration: ${duration === '3' ? '3–5 days' : duration === '7' ? '1 week' : duration === '10' ? '10 days' : duration === '14' ? '2 weeks' : '3 weeks+'}\nInterest: ${interest.charAt(0).toUpperCase() + interest.slice(1)}`);
+            });
+
+            // =============================================
+            // CONTACT FORM
+            // =============================================
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const msg = document.getElementById('contactMessage').value.trim();
+
+                if (!name || !email || !msg) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                alert(`Thanks, ${name}! 🙏\nWe've received your message and will get back to you at ${email} shortly.`);
+                this.reset();
+            });
+
+            // =============================================
+            // CATEGORY CLICK SCROLL
+            // =============================================
+            document.querySelectorAll('.category-item').forEach(el => {
+                el.addEventListener('click', function() {
+                    const slug = this.dataset.slug;
+                    document.getElementById('categoryFilter').value = slug;
+                    filterDestinations();
+                    setTimeout(() => {
+                        document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                });
+            });
+
+            // =============================================
+            // INIT
+            // =============================================
+            renderDestinations();
+            renderCategories();
+            renderExperiences();
+            renderHotels();
+            renderGuide();
+
+            console.log('🌴 ExploreLK — Sri Lanka Tourism Website');
+            console.log('✨ Crafted with love for travelers.');
+
+        })();
+    </script>
+
+</body>
+</html>
