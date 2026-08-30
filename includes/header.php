@@ -18,6 +18,12 @@ $loggedIn = isset($_SESSION['user_id']);
     <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+<div class="global-bg-video-wrapper">
+    <video autoplay muted loop playsinline class="global-bg-video">
+        <source src="includes/videos/176299-855206492.mp4" type="video/mp4" />
+    </video>
+    <div class="global-bg-overlay"></div>
+</div>
 <header class="site-header">
     <div class="container nav-wrap">
         <a href="index.php" class="brand">
