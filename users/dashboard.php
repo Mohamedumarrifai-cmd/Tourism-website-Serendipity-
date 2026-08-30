@@ -13,15 +13,21 @@ if (!isset($_SESSION['user_id'])) {
     <title>User Dashboard | Serendipity Sri Lanka</title>
     <link rel="stylesheet" href="../assets/styles.css" />
     <style>
-        body { background: linear-gradient(135deg, #f7efe4, #eef7f2); }
-        .dashboard { max-width: 980px; margin: 40px auto; background: white; padding: 2rem; border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        body { background: transparent; color: white; }
+        .dashboard { max-width: 980px; margin: 40px auto; background: rgba(15, 25, 37, 0.45); backdrop-filter: blur(16px); padding: 2rem; border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); }
         .dashboard-top { display: grid; gap: 1rem; grid-template-columns: 1.2fr 0.8fr; align-items: center; }
         .hero-video { width: 100%; border-radius: 20px; margin-top: 1rem; }
         .action-grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .action-card { background: #f8f5ee; padding: 1rem; border-radius: 16px; }
+        .action-card { background: rgba(15, 25, 37, 0.35); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
+<div class="global-bg-video-wrapper">
+    <video autoplay muted loop playsinline class="global-bg-video">
+        <source src="../includes/videos/176299-855206492.mp4" type="video/mp4" />
+    </video>
+    <div class="global-bg-overlay"></div>
+</div>
     <div class="dashboard">
         <div class="dashboard-top">
             <div>

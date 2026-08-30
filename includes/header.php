@@ -35,23 +35,17 @@ $loggedIn = isset($_SESSION['user_id']);
         </button>
         <nav id="site-nav" class="main-nav">
             <button class="menu-close" type="button" aria-label="Close navigation"><i class="fa-solid fa-xmark"></i></button>
-            <a href="index.php" class="<?php echo $page === 'home' ? 'active' : ''; ?>">Home</a>
             <a href="destinations.php" class="<?php echo $page === 'destinations' ? 'active' : ''; ?>">Destinations</a>
             <a href="experiences.php" class="<?php echo $page === 'experiences' ? 'active' : ''; ?>">Experiences</a>
-            <a href="hotels.php" class="<?php echo $page === 'hotels' ? 'active' : ''; ?>">Hotels</a>
+            <a href="hotels.php" class="<?php echo $page === 'hotels' ? 'active' : ''; ?>">Stays</a>
             <a href="guide.php" class="<?php echo $page === 'guide' ? 'active' : ''; ?>">Travel Guide</a>
-            <a href="trip-planner.php" class="<?php echo $page === 'planner' ? 'active' : ''; ?>">Trip Planner</a>
-            <a href="about.php" class="<?php echo $page === 'about' ? 'active' : ''; ?>">About</a>
-            <a href="blog.php" class="<?php echo $page === 'blog' ? 'active' : ''; ?>">Blog</a>
-            <a href="contact.php" class="<?php echo $page === 'contact' ? 'active' : ''; ?>">Contact</a>
+            
             <?php if ($loggedIn) { ?>
                 <a href="users/dashboard.php">Dashboard</a>
-                <a href="users/logout.php">Logout</a>
             <?php } else { ?>
-                <a href="users/register.php">Register</a>
                 <a href="users/login.php">Login</a>
             <?php } ?>
-            <a href="destinations.php" class="btn btn-small btn-ghost">Plan Trip</a>
+            <a href="trip-planner.php" class="btn btn-small btn-ghost">Plan Trip</a>
         </nav>
         <div class="nav-overlay" aria-hidden="true"></div>
     </div>
