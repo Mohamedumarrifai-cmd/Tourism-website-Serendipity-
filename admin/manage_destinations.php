@@ -11,39 +11,46 @@ $edit_dest = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-    $name = $conn->real_escape_string($_POST['name'] ?? '');
-    $category = $conn->real_escape_string($_POST['category'] ?? '');
-    $location = $conn->real_escape_string($_POST['location'] ?? '');
-    $description = $conn->real_escape_string($_POST['description'] ?? '');
-    $activities = $conn->real_escape_string($_POST['activities'] ?? '');
-    $image_url = $conn->real_escape_string($_POST['image_url'] ?? '');
-    $duration = $conn->real_escape_string($_POST['duration'] ?? '');
+    $name = trim($_POST['name'] ?? '');
+    $category = trim($_POST['category'] ?? '');
+    $location = trim($_POST['location'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $activities = trim($_POST['activities'] ?? '');
+    $image_url = trim($_POST['image_url'] ?? '');
+    $duration = trim($_POST['duration'] ?? '');
     
     $galleries = [];
     for ($i = 1; $i <= 6; $i++) {
         $g_url = trim($_POST["gallery_$i"] ?? '');
         if ($g_url !== '') $galleries[] = $g_url;
     }
-    $gallery_urls = $conn->real_escape_string(json_encode($galleries));
+    $gallery_urls = json_encode($galleries);
 
     if ($id > 0) {
-        $sql = "UPDATE destinations SET name='$name', category='$category', location='$location', description='$description', activities='$activities', image_url='$image_url', duration='$duration', gallery_urls='$gallery_urls' WHERE id=$id";
+        $stmt = $conn->prepare('UPDATE destinations SET name=?, category=?, location=?, description=?, activities=?, image_url=?, duration=?, gallery_urls=? WHERE id=?');
+        $stmt->bind_param('ssssssssi', $name, $category, $location, $description, $activities, $image_url, $duration, $gallery_urls, $id);
     } else {
-        $sql = "INSERT INTO destinations (name, category, location, description, activities, image_url, duration, gallery_urls) VALUES ('$name', '$category', '$location', '$description', '$activities', '$image_url', '$duration', '$gallery_urls')";
+        $stmt = $conn->prepare('INSERT INTO destinations (name, category, location, description, activities, image_url, duration, gallery_urls) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->bind_param('ssssssss', $name, $category, $location, $description, $activities, $image_url, $duration, $gallery_urls);
     }
-    $conn->query($sql);
+    $stmt->execute();
     header('Location: manage_destinations.php');
     exit;
 }
 
 if ($edit_id > 0) {
-    $res = $conn->query("SELECT * FROM destinations WHERE id=$edit_id");
+    $stmt = $conn->prepare('SELECT * FROM destinations WHERE id=?');
+    $stmt->bind_param('i', $edit_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
     if ($res && $res->num_rows > 0) {
         $edit_dest = $res->fetch_assoc();
     }
 }
 
-$result = $conn->query('SELECT * FROM destinations ORDER BY id DESC');
+$stmt = $conn->prepare('SELECT * FROM destinations ORDER BY id DESC');
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">

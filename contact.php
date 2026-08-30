@@ -3,13 +3,33 @@ $page = 'contact';
 $title = 'Contact';
 $message = '';
 require 'config/database.php';
+require 'includes/security_helpers.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $conn->real_escape_string($_POST['name'] ?? '');
-    $email = $conn->real_escape_string($_POST['email'] ?? '');
-    $tripType = $conn->real_escape_string($_POST['trip'] ?? '');
-    $details = $conn->real_escape_string($_POST['details'] ?? '');
-    $conn->query("INSERT INTO contact_messages (name, email, trip_type, details) VALUES ('$name', '$email', '$tripType', '$details')");
-    $message = 'Thank you! Your trip request has been received. We will reach out shortly.';
+    if (!verifyCsrfToken()) {
+        $message = 'Security validation failed. Please try again.';
+    } else {
+        $name = sanitizeInput($_POST['name'] ?? '');
+        $email = sanitizeInput($_POST['email'] ?? '');
+        $tripType = sanitizeInput($_POST['trip'] ?? '');
+        $details = sanitizeInput($_POST['details'] ?? '');
+        
+        if (empty($name) || empty($email) || empty($details)) {
+            $message = 'Please fill in all required fields.';
+        } elseif (!isValidEmail($email)) {
+            $message = 'Please enter a valid email address.';
+        } elseif (!checkRateLimit('contact_' . $email, 5, 300)) {
+            $message = 'You have submitted too many requests. Please try again later.';
+        } else {
+            $stmt = $conn->prepare('INSERT INTO contact_messages (name, email, trip_type, details) VALUES (?, ?, ?, ?)');
+            $stmt->bind_param('ssss', $name, $email, $tripType, $details);
+            if ($stmt->execute()) {
+                $message = 'Thank you! Your trip request has been received. We will reach out shortly.';
+            } else {
+                $message = 'Error: Unable to save your message. Please try again.';
+            }
+        }
+    }
 }
 include 'includes/header.php';
 ?>
@@ -33,7 +53,8 @@ include 'includes/header.php';
             </ul>
         </div>
         <form class="contact-form" method="post">
-            <?php if ($message) { echo '<div class="success-box">' . htmlspecialchars($message) . '</div>'; } ?>
+            <?php if ($message) { $isError = (strpos($message, 'error') !== false || strpos($message, 'failed') !== false); echo '<div class="' . ($isError ? 'error' : 'success') . '-box">' . htmlspecialchars($message) . '</div>'; } ?>
+            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>" />
             <input type="text" name="name" placeholder="Your name" required />
             <input type="email" name="email" placeholder="Your email" required />
             <input type="text" name="trip" placeholder="Trip type or destination" />

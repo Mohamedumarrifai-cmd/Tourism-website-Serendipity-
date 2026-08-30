@@ -7,14 +7,20 @@ if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
 require '../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $conn->real_escape_string($_POST['title'] ?? '');
-    $description = $conn->real_escape_string($_POST['description'] ?? '');
-    $image_url = $conn->real_escape_string($_POST['image_url'] ?? '');
-    $sql = "INSERT INTO experiences (title, description, image_url) VALUES ('$title', '$description', '$image_url')";
-    $conn->query($sql);
+    $title = trim($_POST['title'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $image_url = trim($_POST['image_url'] ?? '');
+    
+    if (!empty($title) && !empty($description) && !empty($image_url)) {
+        $stmt = $conn->prepare('INSERT INTO experiences (title, description, image_url) VALUES (?, ?, ?)');
+        $stmt->bind_param('sss', $title, $description, $image_url);
+        $stmt->execute();
+    }
 }
 
-$result = $conn->query('SELECT * FROM experiences ORDER BY id DESC');
+$stmt = $conn->prepare('SELECT * FROM experiences ORDER BY id DESC');
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">

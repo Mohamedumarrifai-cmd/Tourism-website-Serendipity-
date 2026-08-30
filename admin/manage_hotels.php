@@ -11,38 +11,45 @@ $edit_hotel = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-    $name = $conn->real_escape_string($_POST['name'] ?? '');
-    $description = $conn->real_escape_string($_POST['description'] ?? '');
-    $price = $conn->real_escape_string($_POST['price'] ?? '');
-    $image_url = $conn->real_escape_string($_POST['image_url'] ?? '');
-    $location = $conn->real_escape_string($_POST['location'] ?? '');
-    $location_url = $conn->real_escape_string($_POST['location_url'] ?? '');
+    $name = trim($_POST['name'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $price = trim($_POST['price'] ?? '');
+    $image_url = trim($_POST['image_url'] ?? '');
+    $location = trim($_POST['location'] ?? '');
+    $location_url = trim($_POST['location_url'] ?? '');
     
     $galleries = [];
     for ($i = 1; $i <= 6; $i++) {
         $g_url = trim($_POST["gallery_$i"] ?? '');
         if ($g_url !== '') $galleries[] = $g_url;
     }
-    $gallery_urls = $conn->real_escape_string(json_encode($galleries));
+    $gallery_urls = json_encode($galleries);
     
     if ($id > 0) {
-        $sql = "UPDATE hotels SET name='$name', description='$description', price='$price', image_url='$image_url', gallery_urls='$gallery_urls', location='$location', location_url='$location_url' WHERE id=$id";
+        $stmt = $conn->prepare('UPDATE hotels SET name=?, description=?, price=?, image_url=?, gallery_urls=?, location=?, location_url=? WHERE id=?');
+        $stmt->bind_param('sssssssi', $name, $description, $price, $image_url, $gallery_urls, $location, $location_url, $id);
     } else {
-        $sql = "INSERT INTO hotels (name, description, price, image_url, gallery_urls, location, location_url) VALUES ('$name', '$description', '$price', '$image_url', '$gallery_urls', '$location', '$location_url')";
+        $stmt = $conn->prepare('INSERT INTO hotels (name, description, price, image_url, gallery_urls, location, location_url) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->bind_param('sssssss', $name, $description, $price, $image_url, $gallery_urls, $location, $location_url);
     }
-    $conn->query($sql);
+    $stmt->execute();
     header('Location: manage_hotels.php');
     exit;
 }
 
 if ($edit_id > 0) {
-    $res = $conn->query("SELECT * FROM hotels WHERE id=$edit_id");
+    $stmt = $conn->prepare('SELECT * FROM hotels WHERE id=?');
+    $stmt->bind_param('i', $edit_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
     if ($res && $res->num_rows > 0) {
         $edit_hotel = $res->fetch_assoc();
     }
 }
 
-$result = $conn->query('SELECT * FROM hotels ORDER BY id DESC');
+$stmt = $conn->prepare('SELECT * FROM hotels ORDER BY id DESC');
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">

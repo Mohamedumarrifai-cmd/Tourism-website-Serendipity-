@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS destinations (
   activities VARCHAR(255) NOT NULL,
   image_url TEXT NOT NULL,
   duration VARCHAR(50) NOT NULL,
+  gallery_urls TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -26,8 +27,10 @@ CREATE TABLE IF NOT EXISTS hotels (
   name VARCHAR(150) NOT NULL,
   description TEXT NOT NULL,
   price VARCHAR(50) NOT NULL,
-  location VARCHAR(150) NOT NULL,
+  location VARCHAR(255) DEFAULT NULL,
+  location_url TEXT DEFAULT NULL,
   image_url TEXT NOT NULL,
+  gallery_urls TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -47,6 +50,9 @@ CREATE TABLE IF NOT EXISTS bookings (
   guest_email VARCHAR(150) NOT NULL,
   check_in DATE NOT NULL,
   check_out DATE NOT NULL,
+  travelers INT NOT NULL DEFAULT 1,
+  status VARCHAR(30) NOT NULL DEFAULT 'pending',
+  notes TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

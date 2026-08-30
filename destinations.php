@@ -13,15 +13,30 @@ $categoryFilter = $_GET['category'] ?? 'all';
 $searchTerm = $_GET['search'] ?? '';
 
 $query = 'SELECT * FROM destinations WHERE 1=1';
-if ($categoryFilter !== 'all') {
-    $query .= " AND category = '$categoryFilter'";
+$params = [];
+$types = '';
+
+if ($categoryFilter !== 'all' && in_array($categoryFilter, ['beach', 'mountain', 'wildlife', 'culture', 'adventure', 'history'], true)) {
+    $query .= " AND category = ?";
+    $params[] = $categoryFilter;
+    $types .= 's';
 }
+
 if ($searchTerm !== '') {
-    $searchTermEsc = $conn->real_escape_string($searchTerm);
-    $query .= " AND (name LIKE '%$searchTermEsc%' OR location LIKE '%$searchTermEsc%' OR description LIKE '%$searchTermEsc%' OR activities LIKE '%$searchTermEsc%')";
+    $searchPattern = '%' . $searchTerm . '%';
+    $query .= " AND (name LIKE ? OR location LIKE ? OR description LIKE ? OR activities LIKE ?)";
+    $params = array_merge($params, [$searchPattern, $searchPattern, $searchPattern, $searchPattern]);
+    $types .= 'ssss';
 }
+
 $query .= ' ORDER BY id DESC';
-$destinationsResult = $conn->query($query);
+
+$stmt = $conn->prepare($query);
+if ($types && $params) {
+    $stmt->bind_param($types, ...$params);
+}
+$stmt->execute();
+$destinationsResult = $stmt->get_result();
 ?>
 <section class="page-hero">
     <div class="container">
