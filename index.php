@@ -9,8 +9,9 @@ $experiencesResult = $conn->query('SELECT * FROM experiences ORDER BY id DESC LI
 $hotelsResult = $conn->query('SELECT * FROM hotels ORDER BY id DESC LIMIT 3');
 ?>
 <section class="hero">
-    <video autoplay muted loop playsinline class="hero-bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-beach-with-waves-4268-large.mp4" type="video/mp4" />
+    <video autoplay muted loop playsinline class="hero-bg-video" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect fill='%23113826' width='1280' height='720'/%3E%3C/svg%3E">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-tropical-beach-seagulls-flying-4237-large.mp4" type="video/mp4" />
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-shot-of-an-island-surrounded-by-turquoise-water-4318-large.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="container hero-inner">
